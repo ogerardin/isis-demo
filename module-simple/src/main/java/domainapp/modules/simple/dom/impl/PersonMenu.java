@@ -57,9 +57,10 @@ public class PersonMenu {
     @Action(domainEvent = CreateDomainEvent.class)
     @MemberOrder(sequence = "3")
     public Person create(
-            @ParameterLayout(named="Name")
-            final String name) {
-        return personRepository.create(name);
+            @ParameterLayout(named="First name") final String firstName,
+            @ParameterLayout(named="Last name") final String name
+    ) {
+        return personRepository.create(firstName, name);
     }
 
 

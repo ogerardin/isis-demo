@@ -44,8 +44,8 @@ public class PersonRepository {
                         "name", name));
     }
 
-    public Person create(final String name) {
-        final Person object = new Person(name);
+    public Person create(final String firstName, String name) {
+        final Person object = new Person(firstName, name);
         serviceRegistry.injectServicesInto(object);
         repositoryService.persist(object);
         return object;

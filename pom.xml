@@ -110,6 +110,10 @@
                     <groupId>org.datanucleus</groupId>
                     <artifactId>datanucleus-maven-plugin</artifactId>
                     <version>${datanucleus-maven-plugin.version}</version>
+                    <configuration>
+                        <verbose>true</verbose>
+                        <fork>false</fork>   <!-- Solve windows line too long error -->
+                    </configuration>
                 </plugin>
 
                 <!-- mavenmixin-enforcerrelaxed -->

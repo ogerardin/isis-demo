@@ -22,9 +22,9 @@ import domainapp.application.fixture.teardown.DomainAppTearDown;
 import domainapp.modules.simple.fixture.scenario.RecreatePersons;
 import org.apache.isis.applib.fixturescripts.FixtureScript;
 
-public class DomainAppDemo2 extends FixtureScript {
+public class DomainAppDemoPersons extends FixtureScript {
 
-    public DomainAppDemo2() {
+    public DomainAppDemoPersons() {
         withDiscoverability(Discoverability.DISCOVERABLE);
     }
 
@@ -38,7 +38,7 @@ public class DomainAppDemo2 extends FixtureScript {
         return number;
     }
 
-    public DomainAppDemo2 setNumber(final Integer number) {
+    public DomainAppDemoPersons setNumber(final Integer number) {
         this.number = number;
         return this;
     }

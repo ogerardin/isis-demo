@@ -36,7 +36,7 @@ import java.util.List;
 public class RecreatePersons extends FixtureScript {
 
     public final List<String> NAMES = Collections.unmodifiableList(Arrays.asList(
-            "Foo", "Bar", "Baz", "Frodo", "Froyo", "Fizz", "Bip", "Bop", "Bang", "Boo"));
+            "Zuckerberg", "Musk", "Elison", "Frodo", "Froyo", "Fizz", "Bip", "Bop", "Bang", "Boo"));
 
     /**
      * The number of objects to create, up to 10; optional, defaults to 3.
@@ -65,7 +65,7 @@ public class RecreatePersons extends FixtureScript {
         ec.executeChild(this, new SimpleModuleTearDown());
         for (int i = 0; i < number; i++) {
             final String name = NAMES.get(i);
-            final PersonMenu_create fs = new PersonMenu_create().setName(name);
+            final PersonMenu_create fs = new PersonMenu_create().setFirstName("Dummy").setName(name);
             ec.executeChild(this, fs.getName(), fs);
             persons.add(fs.getPerson());
         }

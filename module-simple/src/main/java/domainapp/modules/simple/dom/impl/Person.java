@@ -31,6 +31,7 @@ import org.apache.isis.applib.util.ObjectContracts;
 import javax.inject.Inject;
 import javax.jdo.annotations.IdentityType;
 import javax.jdo.annotations.VersionStrategy;
+import java.util.Date;
 
 @javax.jdo.annotations.PersistenceCapable(
         identityType=IdentityType.DATASTORE,
@@ -60,12 +61,13 @@ public class Person implements Comparable<Person> {
 
     //region > title
     public TranslatableString title() {
-        return TranslatableString.tr("Object: {name}", "name", getName());
+        return TranslatableString.tr("Person: {name}", "name", getName());
     }
     //endregion
 
     //region > constructor
-    public Person(final String name) {
+    public Person(final String firstName, String name) {
+        setFirstName(firstName);
         setName(name);
     }
     //endregion
@@ -126,6 +128,20 @@ public class Person implements Comparable<Person> {
     @Getter @Setter
     private String notes;
     //endregion
+
+    @javax.jdo.annotations.Column(allowsNull = "true")
+    @Property(
+            editing = Editing.ENABLED
+    )
+    @Getter @Setter
+    private Date birthDate;
+
+    @javax.jdo.annotations.Column(allowsNull = "false")
+    @Property(
+            editing = Editing.ENABLED
+    )
+    @Getter @Setter
+    private String firstName;
 
     //region > updateName (action)
     @Mixin(method = "exec")

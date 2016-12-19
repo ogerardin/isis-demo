@@ -35,6 +35,9 @@ public class PersonMenu_create extends FixtureScript {
     @Getter @Setter
     private String name;
 
+    @Getter @Setter
+    private String firstName;
+
     /**
      * The created simple object (output).
      */
@@ -45,9 +48,10 @@ public class PersonMenu_create extends FixtureScript {
     @Override
     protected void execute(final ExecutionContext ec) {
 
+        String firstName = checkParam("firstName", ec, String.class);
         String name = checkParam("name", ec, String.class);
 
-        this.person = wrap(personMenu).create(name);
+        this.person = wrap(personMenu).create(firstName, name);
         ec.addResult(this, person);
     }
 
