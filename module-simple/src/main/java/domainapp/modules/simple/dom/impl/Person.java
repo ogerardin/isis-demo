@@ -55,7 +55,8 @@ import java.util.Date;
 @DomainObject(
         objectType = "simple.Person",
         auditing = Auditing.ENABLED,
-        publishing = Publishing.ENABLED
+        publishing = Publishing.ENABLED,
+        bounded = true
 )
 public class Person implements Comparable<Person> {
 
@@ -136,12 +137,33 @@ public class Person implements Comparable<Person> {
     @Getter @Setter
     private Date birthDate;
 
+    @javax.jdo.annotations.Column(allowsNull = "true")
+    @Property(
+            editing = Editing.ENABLED
+    )
+    @Getter @Setter
+    private Date hireDate;
+
     @javax.jdo.annotations.Column(allowsNull = "false")
     @Property(
             editing = Editing.ENABLED
     )
     @Getter @Setter
     private String firstName;
+
+    @Action(semantics = SemanticsOf.IDEMPOTENT_ARE_YOU_SURE)
+    public Person hire() {
+        setHireDate(new Date());
+        return this;
+    }
+
+    @javax.jdo.annotations.Column(allowsNull = "true")
+    @Property(
+            editing = Editing.ENABLED
+    )
+    @Getter @Setter
+    Person cooptedBy;
+
 
     //region > updateName (action)
     @Mixin(method = "exec")
