@@ -249,10 +249,21 @@ public class Person implements Comparable<Person> {
 
     //endregion
 
-    public Person addMission(String customer, Date startDate) {
+    public Person addMission(
+            @ParameterLayout(named = "Customer") String customer,
+            @ParameterLayout(named = "Start Date") Date startDate
+    ) {
         Mission mission = new Mission(this, customer, startDate);
         getMissions().add(mission);
         return this;
+    }
+
+    public String default0AddMission() {
+        return "BCEE";
+    }
+
+    public Date default1AddMission() {
+        return new Date();
     }
 
     //region > toString, compareTo
