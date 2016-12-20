@@ -32,6 +32,7 @@ import javax.inject.Inject;
 import javax.jdo.annotations.IdentityType;
 import javax.jdo.annotations.VersionStrategy;
 import java.util.Date;
+import java.util.SortedSet;
 
 @javax.jdo.annotations.PersistenceCapable(
         identityType=IdentityType.DATASTORE,
@@ -164,6 +165,10 @@ public class Person implements Comparable<Person> {
     @Getter @Setter
     Person cooptedBy;
 
+    @CollectionLayout(defaultView = "table")
+    @Getter @Setter
+    SortedSet<Mission> missions;
+
 
     //region > updateName (action)
     @Mixin(method = "exec")
@@ -243,6 +248,12 @@ public class Person implements Comparable<Person> {
     }
 
     //endregion
+
+    public Person addMission(String customer, Date startDate) {
+        Mission mission = new Mission(this, customer, startDate);
+        getMissions().add(mission);
+        return this;
+    }
 
     //region > toString, compareTo
     @Override
