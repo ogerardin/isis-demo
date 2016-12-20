@@ -93,7 +93,7 @@ public class Person implements Comparable<Person> {
 
     @javax.jdo.annotations.Column(allowsNull = "false", length = NameType.Meta.MAX_LEN)
     @Property(
-            editing = Editing.DISABLED,
+            editing = Editing.ENABLED,
             domainEvent = NameType.PropertyDomainEvent.class
     )
     @Getter @Setter
@@ -268,7 +268,7 @@ public class Person implements Comparable<Person> {
 
     public String disableAddMission() {
         if (getHireDate() == null) {
-            return "Must be hired!";
+            return "Must be hired first!";
         }
         return null;
     }

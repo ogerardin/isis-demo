@@ -22,11 +22,9 @@ import domainapp.modules.simple.dom.SimpleModuleDomSubmodule;
 import lombok.Getter;
 import lombok.Setter;
 import org.apache.isis.applib.annotation.*;
-import org.apache.isis.applib.services.i18n.TranslatableString;
 import org.apache.isis.applib.services.message.MessageService;
 import org.apache.isis.applib.services.repository.RepositoryService;
 import org.apache.isis.applib.services.title.TitleService;
-import org.apache.isis.applib.util.ObjectContracts;
 
 import javax.inject.Inject;
 import javax.jdo.annotations.IdentityType;
@@ -50,7 +48,6 @@ import java.util.Date;
         publishing = Publishing.ENABLED
 )
 public class Mission implements Comparable<Mission> {
-
 
 
     //region > constructor
@@ -91,6 +88,13 @@ public class Mission implements Comparable<Mission> {
     @Title(sequence = "3", prepend = "-")
     @Getter @Setter
     private Date endDate;
+
+    public String validateEndDate(Date endDate) {
+        if (! endDate.after(getStartDate())) {
+            return "End date must be after start date";
+        }
+        return null;
+    }
 
     @Override
     public int compareTo(Mission mission) {
