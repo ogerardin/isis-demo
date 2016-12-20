@@ -266,6 +266,13 @@ public class Person implements Comparable<Person> {
         return new Date();
     }
 
+    public String disableAddMission() {
+        if (getHireDate() == null) {
+            return "Must be hired!";
+        }
+        return null;
+    }
+
     //region > toString, compareTo
     @Override
     public String toString() {
